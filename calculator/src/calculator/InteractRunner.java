@@ -1,7 +1,10 @@
+package calculator;
+
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class InteractRunner {
-    public void start() {
+    void start() {
         Calculator calculator = new Calculator();
 
         while (true) {
@@ -10,7 +13,8 @@ public class InteractRunner {
             calculator.setSign(getSignFromScanner());
 
             calculator.calculateResult();
-
+            System.out.println(calculator.toString());
+            
             while ("y".equals(getAnswer("Do you want memory operations?"))) {
                 saveInMemory(calculator);
 
@@ -30,13 +34,14 @@ public class InteractRunner {
                 }
             }
 
-            if(!"n".equals(getAnswer("Exit?"))){
+            if (!"n".equals(getAnswer("Exit?"))) {
                 break;
             }
         }
 
         ScannerSingleton.close();
     }
+
 
     private void saveInMemory(Calculator calculator) {
         if ("y".equals(getAnswer("Save result in memory?"))) {
@@ -68,18 +73,21 @@ public class InteractRunner {
         while (true) {
             System.out.println("Enter the operation sign(*,/,+,-)");
             String sign = sc.nextLine();
-            switch (sign) {
-                case "*":
-                    return sign;
-                case "/":
-                    return sign;
-                case "-":
-                    return sign;
-                case "+":
-                    return sign;
-                default:
-                    System.out.println("Error, \"" + sign + "\" is not a operation sign, try again");
+            if (toMatchMathematicsSign(sign)) {
+                return sign;
+            }
+            System.out.println("Error, \"" + sign + "\" is not a operation sign, try again");
+        }
+    }
+
+    public boolean toMatchMathematicsSign(String str) {
+        boolean result = false;
+        if (str.length() == 1) {
+            final String MATH_SIGN_PATTERN = "[*/+-]";
+            if (Pattern.compile(MATH_SIGN_PATTERN).matcher(str).find()) {
+                result = true;
             }
         }
+        return result;
     }
 }
