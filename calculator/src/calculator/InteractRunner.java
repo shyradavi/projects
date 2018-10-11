@@ -14,7 +14,7 @@ public class InteractRunner {
 
             calculator.calculateResult();
             System.out.println(calculator.toString());
-            
+
             while ("y".equals(getAnswer("Do you want memory operations?"))) {
                 saveInMemory(calculator);
 
@@ -73,14 +73,14 @@ public class InteractRunner {
         while (true) {
             System.out.println("Enter the operation sign(*,/,+,-)");
             String sign = sc.nextLine();
-            if (toMatchMathematicsSign(sign)) {
+            if (toParseSign(sign)) {
                 return sign;
             }
             System.out.println("Error, \"" + sign + "\" is not a operation sign, try again");
         }
     }
 
-    public boolean toMatchMathematicsSign(String str) {
+    public boolean toParseSign(String str) {
         boolean result = false;
         if (str.length() == 1) {
             final String MATH_SIGN_PATTERN = "[*/+-]";

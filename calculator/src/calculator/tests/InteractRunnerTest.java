@@ -7,15 +7,15 @@ import static org.junit.Assert.assertEquals;
 
 public class InteractRunnerTest {
     @Test
-   public void testToMatchMathematicsSign() {
+   public void testToParseSign() {
         InteractRunner runner = new InteractRunner();
-        assertEquals(runner.toMatchMathematicsSign("da"),false);
-        assertEquals(runner.toMatchMathematicsSign("d*"),false);
-        assertEquals(runner.toMatchMathematicsSign("/--"),false);
-        assertEquals(runner.toMatchMathematicsSign(""),false);
-        assertEquals(runner.toMatchMathematicsSign("+"),true);
-        assertEquals(runner.toMatchMathematicsSign("-"),true);
-        assertEquals(runner.toMatchMathematicsSign("*"),true);
-        assertEquals(runner.toMatchMathematicsSign("/"),true);
+        assertEquals(runner.toParseSign("da"),false);
+        assertEquals(runner.toParseSign("d*"),false);
+        assertEquals(runner.toParseSign("/--"),false);
+        assertEquals(runner.toParseSign(""),false);
+        assertEquals(runner.toParseSign("+"),true);
+        assertEquals(runner.toParseSign("-"),true);
+        assertEquals(runner.toParseSign("*"),true);
+        assertEquals(runner.toParseSign("/"),true);
     }
 }
